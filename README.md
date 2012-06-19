@@ -8,9 +8,10 @@ repos.
 The bot is written in Python and requires the following modules:
 * twisted
 * requests
+* beautifulsoup
 
 On Fedora and RHEL, this can be obtained with:
-`yum install python-twisted python-requests`
+`yum install python-twisted python-requests python-BeautifulSoup`
 
 (On RHEL/CentOS this requires EPEL.)
 
