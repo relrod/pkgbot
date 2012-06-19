@@ -76,6 +76,13 @@ Example:
 < pkgbot> relrod: firefox
 ```
 
-# License
+# License & Hacking
 
-GPLv2+.
+Licensed under GPLv2+.
+
+When hacking please ensure all tests pass (when they exist).
+
+Also please ensure that your code passes PEP8 tests.
+
+A good .git/hooks/pre-commit hook is: `find -name '*.py' | xargs pep8`
+(and ensure the hook is `chmod +x`).
