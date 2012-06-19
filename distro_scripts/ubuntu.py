@@ -29,6 +29,7 @@ class Ubuntu:
                 'name': name_ver[1],
                 'version': name_ver[2],
                 'repo': repository,
+                'arch': ', '.join(arches),
                 'licenses': licenses
             }
         ]
