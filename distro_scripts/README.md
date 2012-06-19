@@ -5,7 +5,9 @@ The bot expects each distro to have a class with a classmethod called search().
 The search() method should be defined like this:
 
 ```python
-def search(name, arch=None, repository=None)
+class DistroName:
+    @classmethod
+    def search(name, arch=None, repository=None):
 ```
 
 It should return an array of hashes. Each hash should contain at least ([1]):
