@@ -1,16 +1,16 @@
 from twisted.words.protocols import irc
 from twisted.internet import reactor, protocol
 from twisted.python import log
-import time, sys
 from distro_scripts import archlinux
 
+
 class PkgBot(irc.IRCClient):
-    
+
     nickname = "pkgbot"
     class_mapper = {
         'archlinux': archlinux.ArchLinux,
     }
-    
+
     def connectionMade(self):
         irc.IRCClient.connectionMade(self)
 
@@ -22,7 +22,7 @@ class PkgBot(irc.IRCClient):
 
     def privmsg(self, user, channel, msg):
         user = user.split('!', 1)[0]
-        
+
         # Check to see if they're sending me a private message
         if channel == self.nickname:
             self.msg(user, 'foobar')
@@ -45,9 +45,9 @@ class PkgBot(irc.IRCClient):
                         for key, value in package.items():
                             extra_data.append("%s: %s" % (key, value))
                         self.msg(channel, "%s: %s %s" % (
-                                user,
-                                str(message),
-                                str(', '.join(extra_data))))
+                            user,
+                            str(message),
+                            str(', '.join(extra_data))))
                 else:
                     self.msg(channel, user + ": That package wasn't found.")
 
