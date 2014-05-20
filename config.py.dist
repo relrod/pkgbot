@@ -1,0 +1,3 @@
+IRC_CHANNEL='#pkgbot'
+IRC_NETWORK='irc.oftc.net'
+IRC_NETWORK_PORT='6667'
