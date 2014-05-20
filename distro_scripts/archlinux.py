@@ -12,7 +12,7 @@ class ArchLinux:
         }
         results = requests.get(
             'https://www.archlinux.org/packages/search/json/',
-            params=params).json
+            params=params).json()
         packages = []
         for package in results['results']:
             packages.append({
