@@ -78,7 +78,41 @@ class PkgBotFactory(protocol.ClientFactory):
         reactor.stop()
 
 
+class PkgBotConfig(object):
+    """
+    Class to hold configuration options for pkgbot.
+    """
+    def __init__(self,
+                 network='irc.oftc.net',
+                 channel='#pkgbot',
+                 port=6667,
+                 ssl=False):
+        self.network = network
+        self.channel = channel
+        self.port = int(port)
+        self.ssl = ssl
+        self.loadConfig()
+
+    def loadConfig(self, filename=None):
+        """
+        Look for configuration file and parse it.
+        """
+        if not filename:
+            try:
+                import config
+
+                self.network = config.IRC_NETWORK
+                self.channel = config.IRC_CHANNEL
+                self.port = int(config.IRC_NETWORK_PORT)
+                self.ssl = config.IRC_NETWORK_SSL
+            except ImportError:
+                pass
+            except AttributeError:
+                pass
+
+
 if __name__ == '__main__':
-    f = PkgBotFactory('#codeblock')
-    reactor.connectTCP("irc.tenthbit.net", 6667, f)
+    cfg = PkgBotConfig()
+    f = PkgBotFactory(cfg.channel)
+    reactor.connectTCP(cfg.network, cfg.port, f)
     reactor.run()
